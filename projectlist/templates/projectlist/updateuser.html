@@ -1,0 +1,16 @@
+{% extends 'projectlist/addproject.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1>User Update</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <br><br>
+   {{form}}
+   <br><br><br>
+    <input class="btn btn-primary" type="submit" value="Update" style="margin-left: 40%;">
+</form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'projectlist/addproject.html' %}
+
+{% block content %}
+<div class="container">
+    <div style="margin-left: 15%;">
+        <span style="color: yellowgreen; font-size: larger;">{{ error_field_empty }}</span>
+        <span style="color: yellowgreen; font-size: larger;">{{ message }}</span>
+        <span style="color: yellowgreen; font-size: larger;">{{ email_error }}</span>
+        <span style="color: yellowgreen; font-size: larger;">{{ newuser }}</span>
+        <span style="color: yellowgreen; font-size: larger;">{{ username_error}}</span>
+      </div>
+
+    <h2>Users Information</h2>
+    
+    <form method="POST" action="{% url 'adduser' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+          <label for="exampleFormControlInput1">User Name</label><br>
+          <input type="text" class="form-control" name="user_name" placeholder="john khalid">
+        </div><br>
+
+        <div>
+            <label for="exampleFormControlInput1">User Email</label><br>
+            <input type="email" class="form-control" name="user_email" placeholder="name@example.com">
+        </div><br>
+
+        <div>
+            <label for="exampleFormControlInput1">User Image</label><br>
+            <input type="file" class="form-control" name="user_image" placeholder="john khalid">
+        </div><br>
+
+        <input class="btn btn-primary" type="submit" value="Add User">
+
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+
+{% extends 'projectlist/addproject.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2>delete section</h2><br><br>
+    <p>Are you sure you want to delete your <span style="color:greenyellow; font-size: 20px;">"{{item}}"!!</span> Porject?</p>
+    <a href="{% url 'showprojectlist' %}"><button class="btn btn-primary">Cancle</button></a>
+
+    <form action="{% url 'delete_project' item.id %}" method="POST">
+        {% csrf_token %}
+        <br>
+        <input class="btn btn-primary" type="submit" value="Confirm" title="Confirm">
+    </form>
+</div>
+
+{% endblock %}

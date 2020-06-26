@@ -1,0 +1,18 @@
+{% extends 'projectlist/addproject.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2 style="color: greenyellow; font-size: 40px;">update</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <br>
+        {{form}}
+        <br>
+        <br>
+        <input class="btn btn-primary" type="submit" value="Update">
+    </form>
+    
+</div>
+
+{% endblock %}

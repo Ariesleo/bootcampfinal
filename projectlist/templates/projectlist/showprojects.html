@@ -1,0 +1,58 @@
+{% extends 'projectlist/addproject.html' %}
+
+{% block content %}
+<div style="margin-left: 5px; margin-right: 5px;">
+    {% for x in add_users.all %}
+        <div style="margin-top: 20px;">
+          <b style="color:''; font-size: 25px; font-family: '-apple-system,BlinkMacSystemFont', Times, serif; margin-left: 5px;">{{x.user_name}}</b>
+          <i style="font-size: small;">{{x.user_email}}</i>
+          <a href="#" ><img src="{{ x.user_image.url }}" class="rounded-circle mr-3" height="50px" width="50px" style="margin-bottom: 20px;" /></a>
+
+          <a href="{% url 'update_user' x.id %}"  title="update user info"><i class="far fa-edit"></i></a>&nbsp;&nbsp;
+          <a href="{% url 'delete_user' x.id %}" title="DELETE User?"><i class="fas fa-trash" style="font-size: 13px;"></i></a>
+        </div>
+    
+        <table class="table table-hover table-dark table table-sm" style="font-family:'Times New Roman', Times, serif; margin-top: -13px;">
+            <thead style="font-size: 17.5px;">
+                <tr>
+                    <th scope="col">Project Name</th>
+                    <th scope="col">Project Links</th>
+                    <th scope="col">Tools Used</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Published Date</th> 
+                    <th scope="col">Feedbacks</th>
+                    <th scope="col">Remarks</th>
+                    <th scope="col">Feedback Deploy</th>
+                    <th scope="col"></th>
+                    
+                     
+                </tr>
+            </thead>
+        {% for y in add_projects.all %}
+            {% if y.user_email == x.user_email %}
+            <tbody style="font-size: 12px;">
+                <tr class="highlight">
+                    <td rowspan="2" style="font-size: 17px; width:9%;"><br>{{y.project_name}}</td>
+                    <td style="width:15%;"><p><span style="text-align: center; font-size: 17px;">Demo Link</span><br> {{y.proj_demo_link}}</p>
+                        <p><span style="text-align: center; font-size: 17px;">Source Link</span><br> {{y.proj_source_link}}</p>
+                    </td>
+    
+                    <td rowspan="2" style="width:9%;"><br><br>{{y.tools_used}}</td>
+                       
+                    <td rowspan="2" style="font-size: 13px; width: 14%;"><br>{{y.project_description}}</td>
+                    <td rowspan="2" style="text-align: center; width:9%;"><br><br>{{y.pub_date}}</td>
+                    <td  rowspan="2" style="font-size: 12px; width:12%;"><br>{{y.feedback}}</td>
+                    <td  rowspan="2" style="font-size: 12px; width:12%;"><br>{{y.remarks}}</td>
+                    <td  rowspan="2" style="width:12%;"><br>{{y.feedback_deploy}}</td>
+                    <td  rowspan="2" style=" width:7%;"><br><br><a href="{% url 'update_feedback' y.id %}" title="add feedback"><i class="fas fa-plus" style="font-size: 20px;"></i></a>&nbsp;&nbsp;
+                                    <a href="{% url 'update_list' y.id %}"  title="update project info"><i class="far fa-edit" style="font-size: 20px;"></i></a>&nbsp;&nbsp;
+                                    <a href="{% url 'delete_project' y.id %}" title="DELETE!!"><i class="fas fa-trash" style="font-size: 20px;"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endif %}     
+        {% endfor %}
+        </table>
+    {% endfor %}
+    </div>
+{% endblock %}
